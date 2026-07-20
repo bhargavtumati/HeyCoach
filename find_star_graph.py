@@ -62,6 +62,7 @@ class Solution:
         else:
             # Otherwise, the second vertex of the first edge is the center, return it.
             return edges[0][1]
+        
 if __name__=="__main__":
     edges=[[1,2],[2,3],[4,2]]
     s=Solution()

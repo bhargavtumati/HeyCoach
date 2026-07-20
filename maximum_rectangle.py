@@ -95,7 +95,7 @@ from typing import List
 
 
 class Solution:
-    def next_small(self, arr):
+    def next_small(self, arr):  #next_small() finds the index of the next smaller element to the right for every element in the array.
         n = len(arr)
         st = [-1]
         ans = [0] * n
@@ -111,7 +111,7 @@ class Solution:
         
         return ans
     
-    def prev_small(self, arr):
+    def prev_small(self, arr): #prev_small() finds the index of the previous smaller element to the left for every element.
         n = len(arr)
         st = [-1]
         ans = [0] * n
@@ -127,7 +127,7 @@ class Solution:
         
         return ans
     
-    def largest_area(self, heights):
+    def largest_area(self, heights):  #largest_area() calculates the largest rectangle area in a histogram represented by the heights array.
         n = len(heights)
         
         next_ = self.next_small(heights)
@@ -147,18 +147,18 @@ class Solution:
         
         return maxi
     
-    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+    def maximal_rectangle(self, matrix: List[List[str]]) -> int: #maximal_rectangle() computes the area of the largest rectangle containing only 1's in a binary matrix.
         maxi = 0
-        height = [0] * len(matrix[0])
+        heights = [0] * len(matrix[0]) #no of columns
         
         for i in range(len(matrix)):
-            for j in range(len(height)):
+            for j in range(len(heights)):
                 if matrix[i][j] == '1':
-                    height[j] += 1
+                    heights[j] += 1
                 else:
-                    height[j] = 0
+                    heights[j] = 0
             
-            maxi = max(maxi, self.largest_area(height))
+            maxi = max(maxi, self.largest_area(heights))
         
         return maxi
         
@@ -181,7 +181,7 @@ if __name__ == "__main__":
         [["0"]],  # Expected result is 0
     ]
     
-    # Test the maximalRectangle method with the test cases
+    # Test the maximal_rectangle method with the test cases
     for matrix in test_cases:
-        result = solution.maximalRectangle(matrix)
+        result = solution.maximal_rectangle(matrix)
         print(f"The maximal rectangle area for the given matrix is {result}.")

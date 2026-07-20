@@ -112,6 +112,7 @@ class findAndReplacePattern {
        }
        return true;
    }
+   
    public static void main(String[] args){
       String[] hm = {"abc","deq","mee","aqq","dkd","ccc"};
       List<String> li = new ArrayList<>();

@@ -71,6 +71,7 @@ class Solution:
             winner = friends.pop(index)
         
         return winner
+    
 if __name__=="__main__":
     n=5
     k=2

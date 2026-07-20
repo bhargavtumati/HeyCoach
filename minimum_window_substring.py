@@ -52,11 +52,11 @@ Continue expanding the right and left pointers until you reach the end of s.
 """
 
 class Solution:
-    def minWindow(self, s: str, t: str) -> str:
+    def min_window(self, s: str, t: str) -> str:
         if not s or not t or len(s) < len(t):
             return ""
 
-        map = [0] * 128
+        mapi = [0] * 128
         count = len(t)
         start = 0
         end = 0
@@ -64,12 +64,12 @@ class Solution:
         start_index = 0
         # UPVOTE !
         for char in t:
-            map[ord(char)] += 1
+            mapi[ord(char)] += 1
 
         while end < len(s):
-            if map[ord(s[end])] > 0:
+            if mapi[ord(s[end])] > 0:
                 count -= 1
-            map[ord(s[end])] -= 1
+            mapi[ord(s[end])] -= 1
             end += 1
 
             while count == 0:
@@ -77,9 +77,9 @@ class Solution:
                     start_index = start
                     min_len = end - start
 
-                if map[ord(s[start])] == 0:
+                if mapi[ord(s[start])] == 0:
                     count += 1
-                map[ord(s[start])] += 1
+                mapi[ord(s[start])] += 1
                 start += 1
 
         return "" if min_len == float('inf') else s[start_index:start_index + min_len]
@@ -88,4 +88,4 @@ if __name__ == "__main__":
          s="ADOBECODEBANC"
          t="ABC"
          d=Solution()
-         print(d.minWindow(s,t))
+         print(d.min_window(s,t))

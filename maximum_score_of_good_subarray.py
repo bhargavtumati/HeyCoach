@@ -127,7 +127,7 @@ from typing import List
 
 
 class Solution:
-    def maximumScore(self, nums: List[int], k: int) -> int:
+    def maximum_score(self, nums: List[int], k: int) -> int:
        left,right =k,k
        min_val=nums[k]
        max_score=min_val
@@ -139,6 +139,7 @@ class Solution:
               min_val=min(min_val,nums[left],nums[right])
               max_score=max(max_score,min_val*(right-left+1))
        return max_score
+    
 if __name__ == "__main__":
     # Create an instance of the Solution class
     solution = Solution()

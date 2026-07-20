@@ -56,37 +56,61 @@ This approach works when `k` and `n` are small. For larger constraints, a greedy
 """
 
 class Solution:
-    def getMinSwaps(self, num: str, k: int) -> int:
-        num=list(num)
-        orig = num.copy()
-        print(num)
+
+    def next_permutation(self, num):
+        """Generate next lexicographically greater permutation"""
+        n = len(num)
+
+        # Find first decreasing element from right
+        i = n - 2
+        while i >= 0 and num[i] >= num[i + 1]:
+            i -= 1
+
+        # Find element just greater than num[i]
+        j = n - 1
+        while num[j] <= num[i]:
+            j -= 1
+
+        # Swap
+        num[i], num[j] = num[j], num[i]
+
+        # Reverse suffix
+        num[i + 1:] = reversed(num[i + 1:])
+
+
+    def count_swaps(self, original, target):
+        """Count minimum adjacent swaps to convert original into target"""
+        swaps = 0
+        original = list(original)
+
+        for i in range(len(target)):
+            if original[i] == target[i]:
+                continue
+
+            j = i + 1
+            while original[j] != target[i]:
+                j += 1
+
+            while j > i:
+                original[j], original[j - 1] = original[j - 1], original[j]
+                swaps += 1
+                j -= 1
+
+        return swaps
+
+
+    def get_min_swaps(self, num: str, k: int) -> int:
+        target = list(num)
+
         for _ in range(k):
-            for i in reversed(range(len(num)-1)):
-                if num[i]<num[i+1]:    #checks num[8,7,6,]>num[9,8,7,]
-                    ii=i+1
-                    while ii < len(num) and num[i] <num[ii]: 
-                           ii +=1
-                    num[i], num[ii-1] = num[ii-1], num[i]   #swap
+            self.next_permutation(target)
 
-                    lo, hi =i+1, len(num)-1
-                    while lo< hi:
-                        num[lo], num[hi] = num[hi], num[lo]  #swap
-                        
-                        lo+=1
-                        hi-=1
-                    print(num)
-                    break
-        ans=0
-        for i in range(len(num)):
-            ii=i
-            while orig[i]!=num[i]:
-                ans+=1
-                ii+=1
-                num[i],num[ii]=num[ii],num[i]
-        return ans
+        return self.count_swaps(num, target)
 
-if __name__=="__main__":
-    num="5489355142"
-    k=4
-    s=Solution()
-    print(s.getMinSwaps(num,k))
+
+if __name__ == "__main__":
+    num = "5489355142"
+    k = 4
+
+    solution = Solution()
+    print(solution.get_min_swaps(num, k))

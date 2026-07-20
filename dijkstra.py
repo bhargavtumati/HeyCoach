@@ -1,7 +1,9 @@
 
 """
 Dijkstras Algorithm
-Given a weighted directed graph with N nodes and E edges, you need to find the shortest path from a given source node to all other nodes in the graph using Dijkstra's algorithm. The nodes are indexed from 0 to N−1, and the graph's edges have non-negative weights.
+Given a weighted directed graph with N nodes and E edges, you need to find the shortest path from a given source node 
+to all other nodes in the graph using Dijkstra's algorithm. The nodes are indexed from 0 to N−1, and the graph's 
+edges have non-negative weights.
 
 Sample Input-1:
 The number of nodes (N). : 5

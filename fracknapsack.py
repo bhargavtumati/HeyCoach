@@ -32,26 +32,26 @@ Constraints:
 class Solution:
     def fractional_knapsack(self, N, W, values, weight):
         ans = 0
-        Curval = 0
+        curval = 0
 
-        def frac(N, W, values, weight, Curval):
+        def frac(N, W, values, weight, curval):
             nonlocal ans
             if N == 0 or W == 0 or not values or not weight:
-                ans = max(ans, Curval)
+                ans = max(ans, curval)
                 return
-            frac(N, W, values[1:], weight[1:], Curval)
+            frac(N, W, values[1:], weight[1:], curval)
 
             if W >= weight[0]:
-                Curval += values[0]
-                frac(N - 1, W - weight[0], values[1:], weight[1:], Curval)
+                curval += values[0]
+                frac(N - 1, W - weight[0], values[1:], weight[1:], curval)
             else:
                 fraction = min(1, W / weight[0])
-                Curval += fraction * values[0]
-                frac(N - 1, 0, values[1:], weight[1:], Curval)
+                curval += fraction * values[0]
+                frac(N - 1, 0, values[1:], weight[1:], curval)
 
             
 
-        frac(N, W, values, weight, Curval)
+        frac(N, W, values, weight, curval)
         return round(ans, 2)  # Round the result to two decimal places
 
 

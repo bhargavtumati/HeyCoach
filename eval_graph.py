@@ -1,6 +1,8 @@
 """Evaluate Division
-Given equations in the form of a/b = k, where a and b are variables and k is a constant, evaluate queries of the form c/d and determine if they can be evaluated using the given equations.
-You are given a list of equations of fractions along with their values and queries. Your task is to evaluate the queries based on the given equations and return the results. If a query cannot be evaluated, return -1.0 as its result.
+Given equations in the form of a/b = k, where a and b are variables and k is a constant, evaluate queries of 
+the form c/d and determine if they can be evaluated using the given equations.
+You are given a list of equations of fractions along with their values and queries. Your task is to evaluate
+ the queries based on the given equations and return the results. If a query cannot be evaluated, return -1.0 as its result.
 
 Input Format:
 First Line: Two integers nandq, separated by a space, where nis the number of equations andq is the number of queries.
@@ -8,7 +10,8 @@ Next n Lines: Each line contains two strings aandb representing an equation a/b.
 Following Line: n floating-point numbers representing the values of the given n equations.
 Next q Lines: Each line contains two strings candd representing a query c/d.
 Output Format:
-A list of floating-point numbers representing the answers to the given queries. If a query cannot be evaluated, its result is -1.0.
+A list of floating-point numbers representing the answers to the given queries. 
+If a query cannot be evaluated, its result is -1.0.
 Examples:
 Input:
 

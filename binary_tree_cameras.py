@@ -102,7 +102,8 @@ Your solution performs a **postorder DFS** and classifies each node into one of 
 * **1** → Node **has a camera**.
 * **2** → Node is **monitored** by one of its children.
 
-After processing the tree, if the root is still unmonitored, you place one final camera at the root. This greedy postorder approach is the standard optimal solution for LeetCode 968.
+After processing the tree, if the root is still unmonitored, you place one final camera at the root. 
+This greedy postorder approach is the standard optimal solution for LeetCode 968.
 """
 
 from typing import Optional

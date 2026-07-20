@@ -1,6 +1,7 @@
 """### Problem Statement
 
-Given a **flow network** with `n` nodes and `m` directed edges, where each edge has a certain capacity, find the **maximum possible flow** that can be sent from the **source node (1)** to the **sink node (n)**.
+Given a **flow network** with `n` nodes and `m` directed edges, where each edge has a certain capacity,
+ find the **maximum possible flow** that can be sent from the **source node (1)** to the **sink node (n)**.
 
 Use the **Ford-Fulkerson algorithm with BFS (Edmonds-Karp approach)** to calculate the maximum flow.
 
@@ -59,63 +60,101 @@ Where:
 """
 
 
-import math
 from collections import deque
 
+
 class Solution:
-    def findMaxFlow(self, n, m, edges):
-        # Create adjacency matrix for capacities
-        capacity = [[0] * (n + 1) for _ in range(n + 1)]
-        for u, v, cap in edges:
-            capacity[u][v] = cap
 
-        def bfs(source, sink, parent):
-            visited = [False] * (n + 1)
-            queue = deque([source])
-            visited[source] = True
+    def find_max_flow(self, n, m, edges):
+        capacity = self.build_capacity_graph(n, edges)
 
-            while queue:
-                u = queue.popleft()
-
-                for v in range(n + 1):
-                    if not visited[v] and capacity[u][v] > 0:
-                        queue.append(v)
-                        visited[v] = True
-                        parent[v] = u
-                        if v == sink:
-                            return True
-            return False
-
-        source, sink = 1, n
-        parent = [-1] * (n + 1)
+        source = 1
+        sink = n
         max_flow = 0
 
-        while bfs(source, sink, parent):
-            path_flow = float('Inf')
-            s = sink
+        while True:
+            parent = [-1] * (n + 1)
 
-            while s != source:
-                path_flow = min(path_flow, capacity[parent[s]][s])
-                s = parent[s]
+            if not self.bfs(capacity, source, sink, parent, n):
+                break
 
-            max_flow += path_flow
-            v = sink
+            flow = self.calculate_path_flow(capacity, source, sink, parent)
+            self.update_residual_capacity(capacity, source, sink, parent, flow)
 
-            while v != source:
-                u = parent[v]
-                capacity[u][v] -= path_flow
-                capacity[v][u] += path_flow
-                v = parent[v]
+            max_flow += flow
 
         return max_flow
 
-edges = [
-    (1, 2, 3),
-    (1, 3, 2),
-    (1, 4, 4),
-    (2, 3, 1),
-    (2, 4, 7),
-    (3, 4, 5)
-]
-solution = Solution()
-print(solution.findMaxFlow(4, 6, edges)) 
+
+    def build_capacity_graph(self, n, edges):
+        capacity = [[0] * (n + 1) for _ in range(n + 1)]
+
+        for start, end, flow in edges:
+            capacity[start][end] = flow
+
+        return capacity
+
+
+    def bfs(self, capacity, source, sink, parent, n):
+        visited = [False] * (n + 1)
+
+        queue = deque([source])
+        visited[source] = True
+
+        while queue:
+            current = queue.popleft()
+
+            for neighbor in range(1, n + 1):
+                if not visited[neighbor] and capacity[current][neighbor] > 0:
+                    parent[neighbor] = current
+                    visited[neighbor] = True
+
+                    if neighbor == sink:
+                        return True
+
+                    queue.append(neighbor)
+
+        return False
+
+
+    def calculate_path_flow(self, capacity, source, sink, parent):
+        path_flow = float("inf")
+        current = sink
+
+        while current != source:
+            previous = parent[current]
+            path_flow = min(
+                path_flow,
+                capacity[previous][current]
+            )
+            current = previous
+
+        return path_flow
+
+
+    def update_residual_capacity(self, capacity, source, sink, parent, flow):
+        current = sink
+
+        while current != source:
+            previous = parent[current]
+
+            capacity[previous][current] -= flow
+            capacity[current][previous] += flow
+
+            current = previous
+
+
+if __name__ == "__main__":
+
+    edges = [
+        (1, 2, 3),
+        (1, 3, 2),
+        (1, 4, 4),
+        (2, 3, 1),
+        (2, 4, 7),
+        (3, 4, 5)
+    ]
+
+    solution = Solution()
+
+    print(solution.find_max_flow(4, 6, edges))

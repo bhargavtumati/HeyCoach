@@ -80,9 +80,9 @@ public class findNoOfLIS {
 
         return result;
     }
-    public static void main(String args[]){
+    public static void main(String[] args){
         int[] nums={1,3,5,4,7};
-findNoOfLIS fs =new findNoOfLIS();
+        findNoOfLIS fs =new findNoOfLIS();
         System.out.println(fs.Solution(nums));
         
     }

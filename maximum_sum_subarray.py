@@ -119,7 +119,7 @@ The maximum circular subarray is either:
 from typing import List
 
 class Solution:
-  def maxSubarraySumCircular(self,nums: List[int]) -> int:
+  def max_subarray_sum_circular(self,nums: List[int]) -> int:
     complete_sum = sum(nums)
     
     min_so_far = 10e5
@@ -139,4 +139,4 @@ class Solution:
 if __name__ == "__main__":
     nums = [5, -3, 5]
     c = Solution()
-    print(c.maxSubarraySumCircular(nums))
+    print(c.max_subarray_sum_circular(nums))
