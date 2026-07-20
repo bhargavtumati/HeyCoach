@@ -38,7 +38,7 @@ class ListNode:
 
 
 class RotateLinkedList:
-  def rotateRight(self, head, k): 
+  def rotate_right(self, head, k): 
  
     if not head or k == 0:
         return head
@@ -74,7 +74,7 @@ if __name__ == "__main__":
 
     # Initialize the linked list
     linked_list = RotateLinkedList()
-    rotated_head = linked_list.rotateRight(nodes[0], 2)
+    rotated_head = linked_list.rotate_right(nodes[0], 2)
 
     # Print the rotated linked list
     current = rotated_head
