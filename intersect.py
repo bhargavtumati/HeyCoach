@@ -1,23 +1,3 @@
-from typing import Counter, List
-
-
-class Solution:
-    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        a = Counter(nums1)
-        b = Counter(nums2)
-        l = []
-        for i in a:
-            if b.get(i) is not None:
-                l+=((min(b[i],a[i]))* [i])
-        return l
-        
-    
-if __name__ == "__main__":
-    nums1=[9,0]
-    nums2=[9,0]
-    h=Solution()
-    print(h.intersect(nums1,nums2))  
-
 """
 350. Intersection of Two Arrays II
 Solved
@@ -51,3 +31,25 @@ What if the given array is already sorted? How would you optimize your algorithm
 What if nums1's size is small compared to nums2's size? Which algorithm is better?
 What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
 """
+
+
+from typing import Counter, List
+
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        a = Counter(nums1)
+        b = Counter(nums2)
+        l = []
+        for i in a:
+            if b.get(i) is not None:
+                l+=((min(b[i],a[i]))* [i])
+        return l
+        
+    
+if __name__ == "__main__":
+    nums1=[9,0]
+    nums2=[9,0]
+    h=Solution()
+    print(h.intersect(nums1,nums2))  
+

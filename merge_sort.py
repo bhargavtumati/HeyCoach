@@ -1,3 +1,5 @@
+#sort the array using merge sort algorithm
+
 def merge_sort(arr):
     if len(arr) <= 1:   # base condition
         return arr

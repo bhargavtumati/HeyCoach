@@ -1,47 +1,3 @@
-import heapq
-
-class Solution:
-    @staticmethod
-    def dijkstra(n, graph, start):
-        # Priority queue to store (distance, vertex) pairs
-        pq = [(0, start)]
-        distances = {i: float('infinity') for i in range(n)}
-        distances[start] = 0
-
-        while pq:
-            current_distance, current_vertex = heapq.heappop(pq)
-
-            # Nodes can only be visited once
-            if current_distance > distances[current_vertex]:
-                continue
-
-            for neighbor, weight in graph[current_vertex]:
-                distance = current_distance + weight
-
-                # Only consider this new path if it's better
-                if distance < distances[neighbor]:
-                    distances[neighbor] = distance
-                    heapq.heappush(pq, (distance, neighbor))
-
-        # Return the distances in the specified format
-        result = []
-        for vertex in range(n):
-            result.append(f"{vertex} {distances[vertex]}")
-        return "\n".join(result)
-
-# Example usage
-n = 4
-graph = [
-    [(1, 1), (2, 4)],  # Neighbors for vertex 0
-    [(0, 1), (2, 2), (3, 5)],  # Neighbors for vertex 1
-    [(0, 4), (1, 2), (3, 1)],  # Neighbors for vertex 2
-    [(1, 5), (2, 1)]  # Neighbors for vertex 3
-]
-
-start_vertex = 0
-solution = Solution()
-print(solution.dijkstra(n, graph, start_vertex))
-
 
 """
 Dijkstras Algorithm
@@ -96,3 +52,48 @@ Constraints:
 -10^9 <= weight <= 10^9 (edge weights)
 
 The graph is guaranteed to be connected."""
+
+import heapq
+
+class Solution:
+    @staticmethod
+    def dijkstra(n, graph, start):
+        # Priority queue to store (distance, vertex) pairs
+        pq = [(0, start)]
+        distances = {i: float('infinity') for i in range(n)}
+        distances[start] = 0
+
+        while pq:
+            current_distance, current_vertex = heapq.heappop(pq)
+
+            # Nodes can only be visited once
+            if current_distance > distances[current_vertex]:
+                continue
+
+            for neighbor, weight in graph[current_vertex]:
+                distance = current_distance + weight
+
+                # Only consider this new path if it's better
+                if distance < distances[neighbor]:
+                    distances[neighbor] = distance
+                    heapq.heappush(pq, (distance, neighbor))
+
+        # Return the distances in the specified format
+        result = []
+        for vertex in range(n):
+            result.append(f"{vertex} {distances[vertex]}")
+        return "\n".join(result)
+
+# Example usage
+n = 4
+graph = [
+    [(1, 1), (2, 4)],  # Neighbors for vertex 0
+    [(0, 1), (2, 2), (3, 5)],  # Neighbors for vertex 1
+    [(0, 4), (1, 2), (3, 1)],  # Neighbors for vertex 2
+    [(1, 5), (2, 1)]  # Neighbors for vertex 3
+]
+
+start_vertex = 0
+solution = Solution()
+print(solution.dijkstra(n, graph, start_vertex))
+

@@ -1,3 +1,128 @@
+"""### Problem Statement: Merge Two Sorted Linked Lists
+
+You are given the heads of two **sorted singly linked lists** `l1` and `l2`.
+
+Your task is to merge the two linked lists into a **single sorted linked list** by rearranging the existing nodes.
+
+Return the head of the merged sorted linked list.
+
+---
+
+### Example:
+
+**Input:**
+
+First linked list:
+
+```
+l1 = 0 → 2 → 4 → 6 → 8
+```
+
+Second linked list:
+
+```
+l2 = 1 → 3 → 5 → 7 → 9
+```
+
+---
+
+### Output:
+
+```
+0 → 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9
+```
+
+---
+
+### Explanation:
+
+Compare the first nodes of both lists:
+
+```
+l1: 0
+l2: 1
+```
+
+`0` is smaller, so it becomes the first node.
+
+Then compare:
+
+```
+l1: 2
+l2: 1
+```
+
+`1` is smaller, so it comes next.
+
+Continue this process until all nodes are merged.
+
+---
+
+### Example 2:
+
+**Input:**
+
+```
+l1 = []
+l2 = [1,3,5]
+```
+
+**Output:**
+
+```
+1 → 3 → 5
+```
+
+---
+
+### Constraints:
+
+```
+0 <= number of nodes <= 50
+-100 <= Node.val <= 100
+```
+
+The linked lists are sorted in non-decreasing order.
+
+---
+
+### Algorithm:
+
+1. If one list is empty, return the other list.
+2. Compare the values of current nodes of both lists.
+3. Attach the smaller node to the result list.
+4. Move that list pointer forward.
+5. Continue until both lists are merged.
+
+---
+
+### Complexity:
+
+Let:
+
+* `m` = number of nodes in `l1`
+* `n` = number of nodes in `l2`
+
+Time Complexity:
+
+```
+O(m + n)
+```
+
+Space Complexity:
+
+```
+O(1)
+```
+
+because no extra linked list is created; existing nodes are reused.
+
+---
+
+This is the classic **LeetCode 21 - Merge Two Sorted Lists** problem.
+"""
+
+
 #include <iostream>
 
 struct ListNode {

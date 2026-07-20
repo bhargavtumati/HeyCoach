@@ -1,19 +1,3 @@
-class Solution:
-    def lis(self, arr, n): 
-         dp=[1]*n
-         for i in range(1,n):
-           for j in range(i):
-             if arr[i]>arr[j]:   # when arr[i] > arr[j] increment by dp[i] by max of (dp[i],d[j]+1)
-               dp[i]=max(dp[i],dp[j]+1)
-  
-         return max(dp) if n>0 else 0
-    
-if __name__=="__main__":
-   s=Solution()
-   arr=[3,10,2,1,20]
-   n=5
-   print(s.lis(arr,n))
-
 """
 LIS
 Longest Increasing Subsequence (LIS)
@@ -58,3 +42,20 @@ Output:
 
 4
 Explanation: The longest increasing subsequence is {3, 7, 40, 80}, which has a length of 4."""
+
+class Solution:
+    def lis(self, arr, n): 
+         dp=[1]*n
+         for i in range(1,n):
+           for j in range(i):
+             if arr[i]>arr[j]:   # when arr[i] > arr[j] increment by dp[i] by max of (dp[i],d[j]+1)
+               dp[i]=max(dp[i],dp[j]+1)
+  
+         return max(dp) if n>0 else 0
+    
+if __name__=="__main__":
+   s=Solution()
+   arr=[3,10,2,1,20]
+   n=5
+   print(s.lis(arr,n))
+

@@ -19,7 +19,9 @@ Constraints:
 n must be an integer between 0 and 37 (inclusive).
 
 The output Tn is guaranteed to fit within a 32-bit integer (maximum value: 2^31 - 1).*/
+
 import java.util.*;
+
 class AlienSequence {
     public int tribonacci(int n) {
       //Write your code here 
@@ -35,9 +37,9 @@ class AlienSequence {
         }
       return al.get(n);
     }
-    public static void main(String args[]){
-AlienSequence as=new AlienSequence();
-int n=4;
-System.out.println(as.tribonacci(n));
+    public static void main(String[] args){
+            AlienSequence as=new AlienSequence();
+            int n=4;
+            System.out.println(as.tribonacci(n));
     }
 }

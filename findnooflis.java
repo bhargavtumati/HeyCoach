@@ -1,6 +1,53 @@
+/*### Problem Statement
+
+Given an integer array `nums`, find the **number of longest increasing subsequences (LIS)**.
+
+A subsequence is a sequence that can be obtained by deleting some elements without changing the order of the remaining elements.
+
+Return the count of subsequences that have the maximum possible increasing length.
+
+### Example
+
+**Input:**
+
+```text
+nums = [1,3,5,4,7]
+```
+
+**Output:**
+
+```text
+2
+```
+
+### Explanation:
+
+Longest increasing subsequences are:
+
+```text
+1 → 3 → 5 → 7
+1 → 3 → 4 → 7
+```
+
+Both have length `4`, so the number of LIS is `2`.
+
+### Approach
+
+Use Dynamic Programming:
+
+* `dp[i]` → length of the longest increasing subsequence ending at index `i`.
+* `count[i]` → number of LIS of length `dp[i]` ending at index `i`.
+* Compare every previous element `j` with current element `i` and update length and count.
+
+### Complexity
+
+* **Time Complexity:** `O(n²)`
+* **Space Complexity:** `O(n)`
+ */
+
 import java.util.Arrays;
 
-public class findnooflis {
+public class findNoOfLIS {
     public int Solution(int[] nums) {
         int n = nums.length;
         int[] dp = new int[n]; // Length of LIS ending at index i
@@ -35,7 +82,7 @@ public class findnooflis {
     }
     public static void main(String args[]){
         int[] nums={1,3,5,4,7};
-findnooflis fs =new findnooflis();
+findNoOfLIS fs =new findNoOfLIS();
         System.out.println(fs.Solution(nums));
         
     }

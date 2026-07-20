@@ -1,3 +1,64 @@
+/*### Problem Statement
+
+Given the head of a singly linked list and an integer `n`, remove the **nth node from the end** of the linked list and return the modified list.
+
+### Example
+
+**Input:**
+
+```text
+head = [1,2,3,4,5]
+n = 2
+```
+
+**Output:**
+
+```text
+[1,2,3,5]
+```
+
+### Explanation:
+
+The nodes from the end are:
+
+```text
+1st from end → 5
+2nd from end → 4
+```
+
+Remove node `4`:
+
+```text
+Before:
+1 → 2 → 3 → 4 → 5
+
+After:
+1 → 2 → 3 → 5
+```
+
+### Approach
+
+Use the **two-pointer technique**:
+
+* Initialize two pointers: `fast` and `slow`.
+* Move `fast` pointer `n` steps ahead.
+* Move both pointers together until `fast` reaches the end.
+* `slow` will be just before the node that needs to be removed.
+* Update the links to remove that node.
+* Handle the case where the head node itself needs to be removed.
+
+### Complexity
+
+* **Time Complexity:** `O(L)`
+  where `L` is the length of the linked list.
+
+* **Space Complexity:** `O(1)`
+
+### Key Idea
+
+The gap of `n` nodes between `fast` and `slow` helps locate the node to remove in a single traversal.
+*/
+
 #include <iostream>
 
 // Definition for singly-linked list

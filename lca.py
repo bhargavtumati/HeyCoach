@@ -1,3 +1,74 @@
+"""### Problem Statement
+
+Given a binary tree and two nodes `n1` and `n2`, find their **Lowest Common Ancestor (LCA)**.
+
+The **Lowest Common Ancestor** is the lowest node in the tree that has both given nodes as its descendants (where a node can be a descendant of itself).
+
+### Example
+
+**Binary Tree:**
+
+```text
+          1
+        /   \
+      12     3
+     /  \   / \
+    4    6 5   7
+```
+
+**Input:**
+
+```text
+n1 = 7
+n2 = 5
+```
+
+**Output:**
+
+```text
+3
+```
+
+### Explanation:
+
+Node `3` is the smallest node that contains both `5` and `7` in its subtree.
+
+```text
+        3
+       / \
+      5   7
+```
+
+Therefore, the Lowest Common Ancestor is `3`.
+
+### Approach
+
+* Recursively search the left and right subtrees.
+* If the current node is one of the target nodes, return it.
+* If both left and right subtrees return a node, the current node is the LCA.
+* Otherwise, return the non-null subtree result.
+
+### Complexity
+
+Let `n` be the number of nodes.
+
+* **Time Complexity:** `O(n)`
+  (Each node is visited once)
+
+* **Space Complexity:** `O(h)`
+  (Recursion stack, where `h` is the height of the tree)
+
+### Key Idea
+
+The LCA is found when:
+
+* One target node is found in the left subtree.
+* The other target node is found in the right subtree.
+
+The node where these paths meet is the Lowest Common Ancestor.
+"""
+
+
 class Node:
     def __init__(self, data):
         self.data = data

@@ -1,3 +1,64 @@
+"""### Problem Statement
+
+Given a **flow network** with `n` nodes and `m` directed edges, where each edge has a certain capacity, find the **maximum possible flow** that can be sent from the **source node (1)** to the **sink node (n)**.
+
+Use the **Ford-Fulkerson algorithm with BFS (Edmonds-Karp approach)** to calculate the maximum flow.
+
+### Example
+
+**Input:**
+
+```text
+n = 4
+
+edges = [
+(1,2,3),
+(1,3,2),
+(1,4,4),
+(2,3,1),
+(2,4,7),
+(3,4,5)
+]
+```
+
+**Output:**
+
+```text
+9
+```
+
+### Explanation
+
+The maximum flow from node `1` to node `4` is achieved by sending flow through multiple paths:
+
+* `1 → 4`
+* `1 → 2 → 4`
+* `1 → 3 → 4`
+
+The total maximum flow is `9`.
+
+### Approach
+
+* Represent the network using a capacity matrix.
+* Use BFS to find an augmenting path from source to sink.
+* Find the minimum capacity (bottleneck) along that path.
+* Update residual capacities.
+* Repeat until no augmenting path exists.
+
+### Complexity
+
+For Edmonds-Karp algorithm:
+
+* **Time Complexity:** `O(V × E²)`
+* **Space Complexity:** `O(V²)`
+
+Where:
+
+* `V` = number of vertices
+* `E` = number of edges
+"""
+
+
 import math
 from collections import deque
 

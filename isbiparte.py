@@ -1,3 +1,67 @@
+"""### Problem Statement
+
+Given `n` people and a list of pairs representing **dislikes**, determine whether it is possible to split all people into **two groups** such that no two people who dislike each other are in the same group.
+
+Return `True` if such a partition is possible, otherwise return `False`.
+
+### Example
+
+**Input:**
+
+```text
+n = 4
+
+dislikes = [
+ [1,2],
+ [1,3],
+ [2,4]
+]
+```
+
+**Output:**
+
+```text
+True
+```
+
+### Explanation:
+
+Possible grouping:
+
+```text
+Group 1: [1,4]
+Group 2: [2,3]
+```
+
+No pair of people who dislike each other appears in the same group.
+
+### Approach
+
+* Represent people and dislikes as an **undirected graph**.
+* Use **BFS graph coloring**:
+
+  * Assign one color to a person.
+  * Assign the opposite color to all their neighbors.
+  * If two connected people have the same color, bipartition is impossible.
+* Check all components because the graph may be disconnected.
+
+### Complexity
+
+Let:
+
+* `V` = number of people
+* `E` = number of dislike relationships
+
+**Time Complexity:** `O(V + E)`
+**Space Complexity:** `O(V + E)`
+
+### Key Idea
+
+A graph can be divided into two groups **if and only if it is bipartite**, meaning it can be colored using exactly two colors without adjacent vertices having the same color.
+"""
+
+
+
 from typing import List
 
 
